@@ -151,8 +151,6 @@ function showResults(){
 }
 async function copyText(s){try{await navigator.clipboard.writeText(s);toast('Copiato negli appunti!')}catch(e){const t=document.createElement('textarea');t.value=s;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();toast('Copiato negli appunti!')}}
 $('drawBtn').onclick=showResults;
-$('copyAll').onclick=()=>{if(!drawData)return;const txt=drawData.assignments.map(a=>`${a.giver}: ${baseUrl()}#reveal=${enc({v:1,g:a.giver,r:a.receiver,d:drawData.details})}`).join('\n');copyText(txt)};
-$('printBtn').onclick=()=>window.print();
 $('editBtn').onclick=()=>{$('results').classList.add('hide');$('setup').classList.remove('hide');$('peopleCard').classList.remove('hide');$('rulesCard').classList.remove('hide');$('drawBtn').parentElement.classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'})};
 $('restartBtn').onclick=()=>{if(!confirm('Vuoi iniziare un nuovo evento? I link del sorteggio precedente resteranno validi, ma non saranno più mostrati qui.'))return;location.hash='';drawData=null;people=[];exclusions=[];renderPeople();renderExclusions();$('results').classList.add('hide');$('setup').classList.remove('hide');$('peopleCard').classList.remove('hide');$('rulesCard').classList.remove('hide');$('drawBtn').parentElement.classList.remove('hide');window.scrollTo(0,0)};
 function loadReveal(){
